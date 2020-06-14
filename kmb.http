@@ -1,0 +1,13 @@
+GET http://search.kmb.hk/KMBWebSite/Function/FunctionRequest.ashx?action=getstops&route=91M&bound=2&serviceType=2
+# lookup OriEName DestEName by bound
+
+###
+GET http://search.kmb.hk/KMBWebSite/Function/FunctionRequest.ashx?action=getroutebound&route=91M
+# action: getstops
+# route: 
+# bound: 
+# serviceType: 1
+
+
+### 
+GET http://etav3.kmb.hk/?action=geteta&lang=en&route=269C&bound=2&stop_seq=0&servicetype=01
