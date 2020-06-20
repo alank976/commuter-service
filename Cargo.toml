@@ -5,6 +5,8 @@ authors = ["alank <alankan976@gmail.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-datetime = "0.5"
+datetime = "0.5.1"
+isahc = { version = "0.9.4", features = ["json"] }
+serde = { version = "1.0.113", features = ["derive", "std"] }
+serde_json = { version = "1.0.55", features = ["std"] }
