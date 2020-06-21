@@ -1,8 +1,7 @@
 use crate::commute::{ArrivalTime, Bound, Route, Stop};
+use crate::Result;
 use isahc::prelude::*;
 use serde;
-
-type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
 pub fn provider_kmb_client() -> Box<dyn KmbClient> {
     Box::new(HttpClient::new())

@@ -1,6 +1,7 @@
 use datetime::LocalDateTime;
+use serde::Serialize;
 
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
 pub struct Route {
     name: String,
     bounds: Vec<Bound>,
@@ -12,7 +13,7 @@ impl Route {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
 pub struct Bound {
     from: String,
     to: String,
@@ -41,7 +42,7 @@ impl Bound {
         }
     }
 }
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
 pub struct Stop {
     name: String,
     index: u8,

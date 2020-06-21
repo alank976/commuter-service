@@ -10,3 +10,5 @@ datetime = "0.5.1"
 isahc = { version = "0.9.4", features = ["json"] }
 serde = { version = "1.0.113", features = ["derive", "std"] }
 serde_json = { version = "1.0.55", features = ["std"] }
+tide = "0.10.0"
+async-std = { version = "1.6.2", features = ["attributes"] }
