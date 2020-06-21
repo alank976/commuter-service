@@ -3,7 +3,7 @@ use crate::Result;
 use isahc::prelude::*;
 use serde;
 
-pub fn provider_kmb_client() -> Box<dyn KmbClient> {
+pub fn provide_kmb_client() -> Box<dyn KmbClient + Send + Sync> {
     Box::new(HttpClient::new())
 }
 
