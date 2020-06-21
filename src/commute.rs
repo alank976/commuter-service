@@ -1,3 +1,4 @@
+use crate::Result;
 use datetime::LocalDateTime;
 use serde::Serialize;
 
@@ -58,4 +59,15 @@ impl Stop {
 pub struct ArrivalTime {
     is_scheduled: bool,
     time: LocalDateTime,
+}
+
+pub trait KmbClient {
+    fn get_route(&self, route: String) -> Result<Route>;
+    fn get_arrival_times(
+        &self,
+        route: String,
+        bound: u8,
+        service_type: u8,
+        stop_index: u8,
+    ) -> Vec<ArrivalTime>;
 }

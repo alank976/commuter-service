@@ -1,30 +1,15 @@
-use crate::commute::{ArrivalTime, Bound, Route, Stop};
+use crate::commute::{ArrivalTime, Bound, KmbClient, Route, Stop};
 use crate::Result;
 use isahc::prelude::*;
 use serde;
 
-pub fn provide_kmb_client() -> Box<dyn KmbClient + Send + Sync> {
-    Box::new(HttpClient::new())
-}
-
-pub trait KmbClient {
-    fn get_route(&self, route: String) -> Result<Route>;
-    fn get_arrival_times(
-        &self,
-        route: String,
-        bound: u8,
-        service_type: u8,
-        stop_index: u8,
-    ) -> Vec<ArrivalTime>;
-}
-
-struct HttpClient {
+pub struct HttpClient {
     basic_info_url: &'static str,
     arrival_time_url: &'static str,
 }
 
 impl HttpClient {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Self {
             basic_info_url: "http://search.kmb.hk/KMBWebSite/Function/FunctionRequest.ashx",
             arrival_time_url: "http://etav3.kmb.hk/?action=geteta&lang=en&route={}&bound={}&stop_seq={}&servicetype=01",
