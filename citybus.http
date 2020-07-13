@@ -1,0 +1,15 @@
+
+#Route
+GET https://rt.data.gov.hk/v1/transport/citybus-nwfb/route/CTB/608
+
+
+
+# /v1/transport/citybus-nwfb/stop/002737 
+# 
+
+###
+GET https://rt.data.gov.hk/v1/transport/citybus-nwfb/route-stop/CTB/608/inbound 
+
+
+
+# /v1/transport/citybusnwfb/eta/{company_id}/{stop_id}/{route} 

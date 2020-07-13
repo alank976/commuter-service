@@ -3,7 +3,7 @@ mod components;
 mod kmb;
 
 use commute::Route;
-use components::Components;
+use components::{Components, GenComponents};
 
 use std::boxed::Box;
 
@@ -14,17 +14,20 @@ pub type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 #[async_std::main]
 async fn main() -> std::result::Result<(), std::io::Error> {
     tide::log::start();
-    let components_state = Components::new();
+    let components_state = components::gen_components();
     let mut app = tide::with_state(components_state);
-    app.at("/routes/:name").get(get_bus_route);
+
+    /// company -> route number -> direction (in/outbound) -> stop -> eta
+    app.at("/companies/:company/routes/:route")
+        .get(get_bus_route);
     app.listen("0.0.0.0:8080").await?;
     Ok(())
 }
 
-async fn get_bus_route(req: Request<Components>) -> TideResult<Response> {
+async fn get_bus_route(req: Request<GenComponents<_>>) -> TideResult<Response> {
     let get_route_func = |req: Request<Components>| -> Result<Route> {
         let kmb_client = &req.state().kmb_client;
-        let route_name: String = req.param("name")?;
+        let route_name: String = req.param("route")?;
         let bus_route = kmb_client.get_route(route_name)?;
         Ok(bus_route)
     };
